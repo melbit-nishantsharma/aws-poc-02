@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                echo "This job is: jenkins build" >> sample.txt
+                echo "This job is: jenkins build"
             }
         }
         stage ('Test') {

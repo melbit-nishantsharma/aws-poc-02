@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        timestamp = $(date +"%m%d%Y_%H%M")
+    }
     stages {
         stage ('Initialize') {
             steps {
@@ -9,7 +11,6 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                timestamp=$(date +"%m%d%Y_%H%M")
                 echo "$timestamp: $GIT_BRANCH: jenkins build" >> sample.txt
             }
         }

@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                echo timestamp=$(date +"%m%d%Y_%H%M")
+                timestamp=$(date +"%m%d%Y_%H%M")
                 echo "$timestamp: $GIT_BRANCH: jenkins build" >> sample.txt
             }
         }

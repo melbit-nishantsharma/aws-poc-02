@@ -26,7 +26,7 @@ pipeline {
         }
         stage ('Deploy to Prod') {
             steps {
-                 echo "This step is: jenkins deploy to production" >> sample.txt
+                 echo "This step is: jenkins deploy to production"
             }
         }
     }

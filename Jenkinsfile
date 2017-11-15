@@ -4,8 +4,9 @@ pipeline {
     stages {
         stage ('Initialize') {
             steps {
-                dir ("/data/jenkins")
+                dir ("/data/jenkins") {
                 checkout scm
+                }
             }  
         }
         stage ('Build') {

@@ -17,8 +17,8 @@ pipeline {
         stage ('Test') {
             steps {
                 echo "Testing passed"
-                emailext body: "<p>STATUS-tobeupdated: Job \'${env.JOB_NAME} [${env.BUILD_ID}]\':</p>
-    <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_ID}]</a>"</p>", subject: "Job \'${env.JOB_NAME} [${env.BUILD_ID}]\'", to: 'nishant.sharma@melbourneit.com.au'
+                emailext body: "STATUS-tobeupdated: Job \'${env.JOB_NAME} [${env.BUILD_ID}]\'
+    Check console output at href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_ID}]", subject: "Job \'${env.JOB_NAME} [${env.BUILD_ID}]\'", to: 'nishant.sharma@melbourneit.com.au'
             }
         }
         stage ('Promote to Prod?') {

@@ -17,10 +17,15 @@ pipeline {
         stage ('Test') {
             steps {
                 echo "Testing passed"
-                emailext body: """<p>STATUS: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>
-<p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""", subject: "Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'", to: 'nishant.sharma@melbourneit.com.au'
+                emailext (
+                    (to: 'nishant.sharma@melbourneit.com.au',
+                     subject: "Job '${env.JOB_BASE_NAME}' (${env.BUILD_NUMBER}) is waiting for input",
+                     body: "Please go to console output of ${env.BUILD_URL} to approve or Reject.");
+                     def userInput = input(id: 'userInput', message: 'Do you want to proceed to prod?', ok: 'Yes')
+                )
             }
         }
+        /*
         stage ('Promote to Prod?') {
             steps {
                 timeout(time:5, unit:'DAYS') {
@@ -28,6 +33,7 @@ pipeline {
                 }
             }
         }
+        */
         stage ('Deploy to Prod') {
             steps {
                  echo "This step is: jenkins deploy to prod"

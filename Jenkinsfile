@@ -17,14 +17,8 @@ pipeline {
         stage ('Test') {
             steps {
                 echo "Testing passed"
-                notify ()
-            }
-            def notify () {
-                emailext (
-                    subject: "Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'", to: 'nishant.sharma@melbourneit.com.au'
-                    body: """<p>STATUS: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>
-                        <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>"""
-                )
+                emailext body: """<p>STATUS: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>
+<p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""", subject: "Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'", to: 'nishant.sharma@melbourneit.com.au'
             }
         }
         stage ('Promote to Prod?') {

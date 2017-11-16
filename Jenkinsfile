@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo "Testing passed"
                 emailext body: """<p>STATUS: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>
-<p>Check console output at "<a href="${env.BUILD_URL + 'input'}" + 'input'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""", subject: "Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'", to: 'nishant.sharma@melbourneit.com.au'
+<p>Check console output at href="${env.BUILD_URL + 'input'}" </p>""", subject: "Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'", to: 'nishant.sharma@melbourneit.com.au'
             }
         }
         stage ('Promote to Prod?') {
